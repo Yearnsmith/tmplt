@@ -55,9 +55,9 @@ example:
   <ul>
     <li>
       <a
-        {% currentPage === 'projects.tmplt' ? 'class="current-page"' : ''/%}
-        href="./projects.html"
-      >Projects</a>
+        {% currentPage === 'awesome-page.tmplt' ? 'class="current-page"' : ''/%}
+        href="./awesome-page.html"
+      >Awesome Page</a>
     </li>
     <li>
       <a
@@ -86,9 +86,9 @@ To make `.tmpt` files into `.html` files, just run a command in your terminal.
 
 #### Order of operations...
 
-when processing a file, tmplt gather any component comments *in that file* with the component's contents.
+when processing a file, tmplt gathers all component comments *in that file*. It then replaces them one by one &mdash; in the order they appear &mdash; with the component's contents.
 
-***❕Note:** tmplt won't replace deeply nested components.*
+***❕Note: tmplt can't replace deeply nested components (yet).***
 
 from this...
 ```html
@@ -115,14 +115,14 @@ from this...
         <ul>
           <li>
             <a
-              {% currentPage === 'projects.tmplt' ? 'class="current-page"' : ''/%}
-              href="./projects.html"
-            >Projects</a>
+              {% currentPage === 'awesome-page.tmplt' ? 'class="current-page"' : ''/%}
+              href="./awesome-page.html"
+            >Awesome Page</a>
           </li>
           <li>
             <a
               {% currentPage === 'contact.tmplt' ? 'class="current-page"' : '' /%}
-              href="./projects.html"
+              href="./awesome-page.html"
             >Contact</a>
           </li>
         </ul>
@@ -141,7 +141,7 @@ from this...
 
 `tmplt` will then execute any code...
 
-`currentPage = projects.tmplt`
+`currentPage = awesome-page.tmplt`
 ```html
 <html>
 
@@ -151,8 +151,8 @@ from this...
       ...
         <a
           class="current-page"
-          href="./projects.html"
-        >Projects</a>
+          href="./awesome-page.html"
+        >Awesome Page</a>
       ...
         <a
 
