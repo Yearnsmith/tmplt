@@ -55,9 +55,9 @@ example:
   <ul>
     <li>
       <a
-        {% currentPage === 'code.tmplt' ? 'class="current-page"' : ''/%}
-        href="./code.html"
-      >Code</a>
+        {% currentPage === 'projects.tmplt' ? 'class="current-page"' : ''/%}
+        href="./projects.html"
+      >Projects</a>
     </li>
     <li>
       <a
@@ -73,7 +73,7 @@ more about `currentPage` below...
 
 ### keywords
 
-currently tmplt has one keyword: currentPage.
+currently tmplt has one keyword: `currentPage`.
 
 This allows your executed code to see which file is currently being processed.
 
@@ -93,47 +93,49 @@ when processing a file, tmplt gather any component comments *in that file* with 
 from this...
 ```html
 <html>
+  <body>
+    <!--% ../components/header.tmplt /%-->
 
-  ...
+    ...
 
-  <!--% ../components/header.tmplt /%-->
+    <!--% ../components/footer.html /%-->
 
-  ...
+    ...
 
-  <!--% ../components/footer.html /%-->
+  </body>
 </html>
 ```
 ...to this...
 ```html
 <html>
+  <body>
+    <header>
+      <h1>My Awesome Site</h1>
+      <nav>
+        <ul>
+          <li>
+            <a
+              {% currentPage === 'projects.tmplt' ? 'class="current-page"' : ''/%}
+              href="./projects.html"
+            >Projects</a>
+          </li>
+          <li>
+            <a
+              {% currentPage === 'contact.tmplt' ? 'class="current-page"' : '' /%}
+              href="./projects.html"
+            >Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-  ...
+    ...
 
-  <header>
-    <h1>My Awesome Site</h1>
-    <nav>
-      <ul>
-        <li>
-          <a
-            {% currentPage === 'projects.tmplt' ? 'class="current-page"' : ''/%}
-            href="./projects.html"
-          >Projects</a>
-        </li>
-        <li>
-          <a
-            {% currentPage === 'contact.tmplt' ? 'class="current-page"' : '' /%}
-            href="./projects.html"
-          >Contact</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  ...
-
-  <footer>
-    ©️ A. Smithee
-  </footer>
+    <footer>
+      ©️ A. Smithee
+    </footer>
+    ...
+  </body>
 </html>
 ```
 
@@ -150,7 +152,7 @@ from this...
         <a
           class="current-page"
           href="./projects.html"
-        >Code</a>
+        >Projects</a>
       ...
         <a
 
@@ -164,10 +166,11 @@ from this...
 </html>
 ```
 
-
 ### Processing Single files
 
-#### `tmplt <input_file> <output_file>`
+tmplt can process files one by one:
+
+#### `$ tmplt <input_file> <output_file>`
 
 Process `<input_file>` and save as `<output_file>`
 
@@ -187,7 +190,9 @@ Process `<input_file>` and save as `<output_file>`
 
 ### Processing Directories
 
-#### `tmplt <input_path>`
+tmplt can also process all `.tmplt` files in a given directory:
+
+#### `$ tmplt <input_path>`
 
 iterate through `<input_path>` and output files to current dir
 
@@ -206,7 +211,7 @@ iterate through `<input_path>` and output files to current dir
 ~/website/my-awesome-website $ ls ./
 >> templates/ index.html about.html contact.html
 ```
-#### `tmplt <input_path> <output_path>`
+#### `$ tmplt <input_path> <output_path>`
 
 iterate through `<input_path>` and output files to `<output_path>`
 
