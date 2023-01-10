@@ -82,7 +82,7 @@ I added this, specifically so I could add the `current-page` class to navigation
 
 ### Processing files
 
-To make `.tmpt` files into `.html` files, just run a command in your terminal.
+To make `.tmplt` files into `.html` files, just run a command in your terminal.
 
 #### Order of operations...
 
@@ -239,17 +239,20 @@ Also, it scratched an itch for a temporary, static, folio site.
 
 ## road map
 
-1. deeply render files
+1. **deeply render files**
+
     tmplt is only simple. It only renders a direct component.
     So if your header has a component, it'll render as an html comment.
 
-2. option for batching files
+2. **option for batching files**
 
     `tmplt --batch ./templates/index.tmplt ./templates/about.tmplt ./`
 
-3. option for custom file extension on output
+3. **option for custom file extension on output**
 
     `tmplt --ext .xml ./templates ./xml`
+
+4. **properly split code into something resembling MVC**
 
 ## known bugs
 
